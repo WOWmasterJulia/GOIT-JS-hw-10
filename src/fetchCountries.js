@@ -7,25 +7,22 @@
 // flags.svg - посилання на зображення прапора
 // languages - масив мов
 
-import './css/styles.css';
-function fetchCountries() {
+
+
+export function fetchCountries(name) {
     return fetch('https://restcountries.com/v3.1/name/deutschland')
+    // return fetch('https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags.svg,languages')
     .then(response => {
-    // console.log(response.json());
-        return response.json();
-        // дальнейшее убираем, т.к. перед fetch ставим ретерн:
-    // })
-    // .then(country => {
-    // console.log(country);
-    // })
-    // .catch(error => {
-    // console.log(error);
-    });
-}
-fetchCountries()
-    .then(newCountry)
-    .catch(error => console.log(error));
-    
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();  
+    })
+};
+fetchCountries('deutschland').then(data => console.log(data)).catch(err => console.log(err));
+// fetchCountries().then(data => console.log(data)).catch(err => console.log(err));
+
+    // response.json() = data
     // .then(fetchCountries) - передаешь ссылку на функцию
     // .then(fetchCountries()) - передаешь вызов этой функции и увидишь результат
 
