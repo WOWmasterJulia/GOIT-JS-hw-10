@@ -10,8 +10,8 @@ const inputEl = document.querySelector('#search-box');
 const listEl = document.querySelector('.country-list');
 const countryEl = document.querySelector('.country-info');
 // inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
-inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
-// inputEl.addEventListener('input', onSearch);
+// inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+inputEl.addEventListener('input', onSearch);
 let inpName = '';
 
 function onSearch(evt) {
@@ -40,10 +40,13 @@ function onSearch(evt) {
         if (data.length === 1) {
             const markupcard = data.map((elem) => `
         <div> 
-        <img src="${elem.flags.svg}" alt="${elem.flags.alt}" width="25"> ${elem.name.official} 
+        <div style = "display: flex">
+        <img src="${elem.flags.png}" alt="${elem.flags.alt}" width="160" height="105" > 
+        <h1 style = "font-weight: 700"> ${elem.name.official}</h1>
+        </div>
         <p style = "font-weight: 700">Capital: <span style = "font-weight: 400">${elem.capital} </span></p>
-        <p>Population: ${elem.population}</p>
-        <p>Languages: ${Object.values(elem.languages)}</p>   
+        <p style = "font-weight: 700">Population: <span style = "font-weight: 400">${elem.population} </span></p>
+        <p style = "font-weight: 700">Languages: <span style = "font-weight: 400">${Object.values(elem.languages)} </span></p>   
         </div>`).join("");
         listEl.innerHTML = markupcard;
         }
@@ -52,8 +55,3 @@ function onSearch(evt) {
         Notiflix.Notify.failure("Oops, there is no country with that name.");
     });
 }
-// name.official - повна назва країни
-// capital - столиця
-// population - населення
-// flags.svg - посилання на зображення прапора
-// languages - масив мов
