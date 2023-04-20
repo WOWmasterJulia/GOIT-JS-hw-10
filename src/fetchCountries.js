@@ -10,8 +10,11 @@
 
 
 export function fetchCountries(name) {
-    return fetch('https://restcountries.com/v3.1/name/deutschland')
-    // return fetch('https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags.svg,languages')
+    // Для Германии:
+    // return fetch('https://restcountries.com/v3.1/name/deutschland')
+    // Не работает:
+    return fetch(`https://restcountries.com/v3.1/name/${name}?fields=name,capital,population,flags,languages`)
+    // return fetch('https://restcountries.com/v3.1/all?fields=name,flags,capital,population,languages')
     .then(response => {
         if (!response.ok) {
             throw new Error(response.statusText);
@@ -19,7 +22,10 @@ export function fetchCountries(name) {
         return response.json();  
     })
 };
-fetchCountries('deutschland').then(data => console.log(data)).catch(err => console.log(err));
+
+// Для Германии:
+// fetchCountries('deutschland').then(data => console.log(data)).catch(err => console.log(err));
+// fetchCountries().then(data => console.log(data)).catch(err => console.log(err));
 // fetchCountries().then(data => console.log(data)).catch(err => console.log(err));
 
     // response.json() = data
