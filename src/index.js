@@ -59,8 +59,16 @@ function onSearch(evt) {
     }).catch(err => {
         if(err.message === '404') {        
         Notiflix.Notify.failure("Oops, there is no country with that name.");
-            countryEl.innerHTML = '';
+            // countryEl.innerHTML = '';
             listEl.innerHTML = '';
+            // inputEl.disabled = false;
+            // inputEl.innerHTML = '';
+            // inputEl.setAttribute('disabled', 'true');
+            // inputEl.reset();
+            // inputEl.value.replase();
+            // inpName.reset();
+            inputEl.value = '';
+
         }
         console.log(err);
     });
