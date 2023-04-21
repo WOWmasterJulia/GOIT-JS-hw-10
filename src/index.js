@@ -10,18 +10,19 @@ const inputEl = document.querySelector('#search-box');
 const listEl = document.querySelector('.country-list');
 const countryEl = document.querySelector('.country-info');
 // inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
-// inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
-inputEl.addEventListener('input', onSearch);
+inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+// inputEl.addEventListener('input', onSearch);
 let inpName = '';
 
 function onSearch(evt) {
     evt.preventDefault(evt);
-    inpName = evt.currentTarget.value.trim();
+    // inpName = evt.currentTarget.value.trim();
+    inpName = evt.target.value.trim();
     if (inpName === '') {
         return
     }
     // console.log(evt.currentTarget.value);
-    fetchCountries(evt.currentTarget.value).then(data => {
+    fetchCountries(inpName).then(data => {
         console.log(data)
         
         if (data.length > 10 ) {
