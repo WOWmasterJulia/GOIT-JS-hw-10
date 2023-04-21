@@ -23,7 +23,7 @@ function onSearch(evt) {
     }
     // console.log(evt.currentTarget.value);
     fetchCountries(inpName).then(data => {
-        console.log(data)
+        // console.log(data)
         
         if (data.length > 10 ) {
             Notiflix.Notify.failure("Too many matches found. Please enter a more specific name."); 
