@@ -9,9 +9,9 @@ const DEBOUNCE_DELAY = 300;
 const inputEl = document.querySelector('#search-box');
 const listEl = document.querySelector('.country-list');
 const countryEl = document.querySelector('.country-info');
-// inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
+
 inputEl.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
-// inputEl.addEventListener('input', onSearch);
+
 let inpName = '';
 
 function onSearch(evt) {
