@@ -26,7 +26,7 @@ function onSearch(evt) {
         // console.log(data)
         
         if (data.length > 10 ) {
-            Notiflix.Notify.failure("Too many matches found. Please enter a more specific name."); 
+            Notiflix.Notify.info("Too many matches found. Please enter a more specific name."); 
             return
         }
         const markup = data.map((elem) => `
@@ -51,8 +51,17 @@ function onSearch(evt) {
         </div>`).join("");
         listEl.innerHTML = markupcard;
         }
+//     }).catch(err => {
+//         console.log(err)
+//         Notiflix.Notify.failure("Oops, there is no country with that name.");
+//     });
+// }
     }).catch(err => {
-        console.log(err)
+        if(err.message === '404') {        
         Notiflix.Notify.failure("Oops, there is no country with that name.");
+            countryEl.innerHTML = '';
+            listEl.innerHTML = '';
+        }
+        console.log(err);
     });
 }
