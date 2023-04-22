@@ -25,9 +25,12 @@ function onSearch(evt) {
     fetchCountries(inpName).then(data => {
         // console.log(data)
         
-        if (data.length > 10 ) {
-            Notiflix.Notify.info("Too many matches found. Please enter a more specific name."); 
-            return
+        if (data.length > 10) {
+            countryEl.innerHTML = '';
+            listEl.innerHTML = '';
+            Notiflix.Notify.info("Too many matches found. Please enter a more specific name.");
+            
+            return;
         }
         const markup = data.map((elem) => `
         <li> 
@@ -59,15 +62,10 @@ function onSearch(evt) {
     }).catch(err => {
         if(err.message === '404') {        
         Notiflix.Notify.failure("Oops, there is no country with that name.");
-            // countryEl.innerHTML = '';
+            countryEl.innerHTML = '';
             listEl.innerHTML = '';
-            // inputEl.disabled = false;
-            // inputEl.innerHTML = '';
-            // inputEl.setAttribute('disabled', 'true');
-            // inputEl.reset();
-            // inputEl.value.replase();
-            // inpName.reset();
-            inputEl.value = '';
+
+            // inputEl.value = '';
 
         }
         console.log(err);
