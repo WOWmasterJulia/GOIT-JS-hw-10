@@ -66,7 +66,6 @@ function onSearch(evt) {
             listEl.innerHTML = '';
 
             // inputEl.value = '';
-
         }
         console.log(err);
     });
